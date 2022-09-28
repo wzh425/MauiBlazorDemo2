@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<NoBindingEmbedding>false</NoBindingEmbedding>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+ <!--<ItemGroup>
+     <Compile Update="libWeChatSDK.linkwith.cs">
+         <DependentUpon>libWeChatSDK.a</DependentUpon>
+     </Compile>
+ </ItemGroup>
+ <ItemGroup>
+     <ObjcBindingNativeLibrary Include="libWeChatSDK.a" />
+ </ItemGroup>-->
+<ItemGroup>
+    <NativeReference Include="OpenSDK1.9.6\libWeChatSDK.a">
+      <Kind>Static</Kind>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>CFNetwork CoreTelephony Security SystemConfiguration</Frameworks>
+      <LinkerFlags>-ObjC -all_load -lstdc++ -lsqlite3.0 -lz</LinkerFlags>
+    </NativeReference>
+  </ItemGroup>
+</Project>
